@@ -1,0 +1,28 @@
+<div class="container mx-auto flex-col justify-center">
+    <p class="text-center p-5">To Do List</p>
+
+    <div class="w-1/2 mx-auto">
+        <form [formGroup]="form" (onSubmit)="save()">
+            <input id="add" type="text" class="w-full p-3 rounded-xl bg-gray-100" formControlName="task" placeholder="What are you working on?" />
+            <app-button (onClick)="save()">Save</app-button>
+        </form>
+
+        <div class="my-10">
+            <div>
+                <p>My Tasks</p>
+                <app-button (onClick)="clearList()">Clear</app-button>
+            </div>
+            
+                @for (task of tasks; track $index) {
+                <div class="p-5 bg-gray-100 my-2 grid grid-cols-12 gap-2">
+                    <div class="col-span-10 text-lg">{{ task }}</div>
+                    <div class="flex-col justify-between gap-3">
+                        <app-button (onClick)="editTask(task, $index)">Editar</app-button>
+                        <app-button (onClick)="deleteTask($index)">Delete</app-button>
+                    </div>
+                </div>
+                }
+            
+        </div>
+    </div>
+</div>
